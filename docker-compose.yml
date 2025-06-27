@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   cf-workers-sub:
-    build: .
+    image: a3180623/cf-workers-sub-express:latest
     container_name: cf-workers-sub
     restart: unless-stopped
     ports:
