@@ -6,7 +6,7 @@ set -e
 
 # 配置变量
 IMAGE_NAME="cf-workers-sub-express"
-DOCKER_USERNAME="your-dockerhub-username"  # 请修改为你的Docker Hub用户名
+DOCKER_USERNAME="frankieli123"  # Docker Hub用户名
 VERSION="latest"
 
 echo "🐳 开始构建Docker镜像..."

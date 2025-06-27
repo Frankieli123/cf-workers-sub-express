@@ -116,7 +116,7 @@ docker-compose up -d
 
 ```bash
 # 拉取镜像
-docker pull your-username/cf-workers-sub-express:latest
+docker pull a3180623/cf-workers-sub-express:latest
 
 # 运行容器
 docker run -d \
@@ -127,7 +127,7 @@ docker run -d \
   -e TG_BOT_TOKEN=your_bot_token \
   -e TG_CHAT_ID=your_chat_id \
   -v ./data:/app/data \
-  your-username/cf-workers-sub-express:latest
+  a3180623/cf-workers-sub-express:latest
 ```
 
 ### 方式三：构建本地镜像
