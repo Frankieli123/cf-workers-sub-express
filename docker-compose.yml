@@ -1,0 +1,57 @@
+version: '3.8'
+
+services:
+  cf-workers-sub:
+    build: .
+    container_name: cf-workers-sub
+    restart: unless-stopped
+    ports:
+      - "5555:5555"
+    environment:
+      # 运行环境模式
+      - NODE_ENV=production
+      # 服务监听端口
+      - PORT=5555
+      # 主访问令牌，用于管理和订阅访问
+      - TOKEN=test123
+      # 访客令牌，仅用于订阅访问（可选）
+      - GUEST_TOKEN=test
+      # 订阅服务名称，显示在页面标题
+      - SUB_NAME=CF-Workers-SUB
+      # 订阅更新间隔时间（小时）
+      - SUB_UPDATE_TIME=6
+      # 订阅转换API地址
+      - SUB_API=https://url.v1.mk
+      # 订阅转换配置文件URL
+      - SUB_CONFIG=${SUB_CONFIG:https://raw.githubusercontent.com/Frankieli123/clash2/refs/heads/main/Clash-LIAN.ini
+      # 是否启用Telegram通知（1启用，0禁用）
+      - TG=${TG:-0}
+      # Telegram Bot Token
+      - TG_BOT_TOKEN=${TG_BOT_TOKEN:-}
+      # Telegram Chat ID
+      - TG_CHAT_ID=${TG_CHAT_ID:-}
+      # WARP节点配置（可选）
+      - WARP=${WARP:-}
+      # 额外节点链接（可选）
+      - LINK=${LINK:-}
+      # 额外订阅链接（可选）
+      - LINKSUB=${LINKSUB:-}
+      # 302重定向URL（可选）
+      - URL302=${URL302:-}
+      # 自定义重定向URL（可选）
+      - URL=${URL:-}
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5555/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
