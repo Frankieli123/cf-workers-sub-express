@@ -30,7 +30,7 @@ RUN mkdir -p /app/data && chown -R node:node /app
 USER node
 
 # 暴露端口
-EXPOSE 3000
+EXPOSE 5555
 
 # 健康检查
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \

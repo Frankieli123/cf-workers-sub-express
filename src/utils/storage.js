@@ -14,6 +14,7 @@ const setupStorage = async () => {
     if (!await fs.pathExists(LINKS_FILE)) {
       const defaultLinks = `https://raw.githubusercontent.com/mfuu/v2ray/master/v2ray`;
       await fs.writeFile(LINKS_FILE, defaultLinks, 'utf8');
+      console.log('✅ 创建默认链接文件:', LINKS_FILE);
     }
     
     // 初始化配置文件

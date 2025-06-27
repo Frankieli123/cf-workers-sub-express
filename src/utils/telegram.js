@@ -14,14 +14,23 @@ const sendMessage = async (type, ip, add_data = "") => {
     let msg = "";
     
     // 获取IP地理信息
-    const response = await fetch(`http://ip-api.com/json/${ip}?lang=zh-CN`, {
-      timeout: 5000
-    });
-    
-    if (response.ok) {
-      const ipInfo = await response.json();
-      msg = `${type}\nIP: ${ip}\n国家: ${ipInfo.country}\n<tg-spoiler>城市: ${ipInfo.city}\n组织: ${ipInfo.org}\nASN: ${ipInfo.as}\n${add_data}`;
-    } else {
+    try {
+      const response = await fetch(`http://ip-api.com/json/${ip}?lang=zh-CN`, {
+        timeout: 3000
+      });
+
+      if (response.ok) {
+        const ipInfo = await response.json();
+        if (ipInfo.status === 'success') {
+          msg = `${type}\nIP: ${ip}\n国家: ${ipInfo.country || '未知'}\n<tg-spoiler>城市: ${ipInfo.city || '未知'}\n组织: ${ipInfo.org || '未知'}\nASN: ${ipInfo.as || '未知'}\n${add_data}`;
+        } else {
+          msg = `${type}\nIP: ${ip}\n<tg-spoiler>${add_data}`;
+        }
+      } else {
+        msg = `${type}\nIP: ${ip}\n<tg-spoiler>${add_data}`;
+      }
+    } catch (ipError) {
+      console.log('IP地理信息获取失败，使用简化消息:', ipError.message);
       msg = `${type}\nIP: ${ip}\n<tg-spoiler>${add_data}`;
     }
     

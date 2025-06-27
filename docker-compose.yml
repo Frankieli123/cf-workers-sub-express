@@ -55,3 +55,9 @@ services:
         max-size: "10m"
         max-file: "3"
 
+volumes:
+  cf-workers-sub-data:
+    driver: local
+  cf-workers-sub-logs:
+    driver: local
+
