@@ -23,7 +23,7 @@ services:
       # 订阅转换API地址
       - SUB_API=https://url.v1.mk
       # 订阅转换配置文件URL
-      - SUB_CONFIG=${SUB_CONFIG:https://raw.githubusercontent.com/Frankieli123/clash2/refs/heads/main/Clash-LIAN.ini
+      - SUB_CONFIG=https://raw.githubusercontent.com/Frankieli123/clash2/refs/heads/main/Clash-LIAN.ini
       # 是否启用Telegram通知（1启用，0禁用）
       - TG=${TG:-0}
       # Telegram Bot Token
